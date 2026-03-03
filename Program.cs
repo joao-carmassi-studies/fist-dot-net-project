@@ -1,4 +1,7 @@
-﻿List<string> listaDasBandas = ["BMTH", "System"];
+﻿// List<string> listaDasBandas = ["BMTH", "System"];
+Dictionary<string, List<int>> listaDeBandas = [];
+listaDeBandas.Add("BMTH", [2, 4, 6, 8]);
+listaDeBandas.Add("System", [1, 3, 5, 7]);
 
 void ExibirLogo()
 {
@@ -13,7 +16,7 @@ void ExibirLogo()
 
 void ExibirMenu()
 {
-  Console.WriteLine("\nDigite 1 para mostrar uma banda");
+  Console.WriteLine("\nDigite 1 para adicionar uma banda");
   Console.WriteLine("Digite 2 para mostrar todas as bandas");
   Console.WriteLine("Digite 3 para avaliar uma banda");
   Console.WriteLine("Digite 4 para exibir a media de uma banda");
@@ -38,6 +41,7 @@ void ExibirMenu()
       Console.WriteLine("Você escolheu a quarta opção: exibir a média de uma banda");
       break;
     case 0:
+      Console.WriteLine("Tchau tchau");
       break;
     default:
       Console.WriteLine("Opção inválida. Tente novamente.\n");
@@ -64,6 +68,8 @@ void ExibeMsgIrInicio()
   ExibirMenu();
 }
 
+//? FuncoesMenu --------------------
+
 void RegistraBanda()
 {
   Console.Clear();
@@ -76,7 +82,7 @@ void RegistraBanda()
     RegistraBanda();
   }
   Console.WriteLine($"A banda {nomeDaBanda} foi registrada!!!");
-  listaDasBandas.Add(nomeDaBanda);
+  listaDeBandas.Add(nomeDaBanda, []);
 
   ExibeMsgIrInicio();
 }
@@ -85,9 +91,11 @@ void ListaBandasRegistradas()
 {
   Console.Clear();
   ExibeTitulo("Lista das bandas");
-  for (int i = 0; i < listaDasBandas.Count; i++)
+  int i = 1;
+  foreach (string banda in listaDeBandas.Keys)
   {
-    Console.WriteLine($"{i} - {listaDasBandas[i]}");
+    Console.WriteLine($"{i} - {banda}");
+    i++;
   }
 
   ExibeMsgIrInicio();
