@@ -1,7 +1,7 @@
-﻿// List<string> listaDasBandas = ["BMTH", "System"];
-Dictionary<string, List<int>> listaDeBandas = [];
-listaDeBandas.Add("BMTH", [2, 4, 6, 8]);
-listaDeBandas.Add("System", [1, 3, 5, 7]);
+﻿var listaDeBandas = new Dictionary<string, List<int>> {
+  { "BMTH",  [2, 4, 6, 8]  },
+  { "System", [ 1, 3, 5, 7]  }
+};
 
 void ExibirLogo()
 {
@@ -24,23 +24,22 @@ void ExibirMenu()
 
   Console.Write("\nDigite a sua opção: ");
   string opcaoSelecionada = Console.ReadLine()!;
-  int numeroOpcaoSelecionada = int.Parse(opcaoSelecionada);
 
-  switch (numeroOpcaoSelecionada)
+  switch (opcaoSelecionada)
   {
-    case 1:
+    case "1":
       RegistraBanda();
       break;
-    case 2:
+    case "2":
       ListaBandasRegistradas();
       break;
-    case 3:
+    case "3":
       AvaliarBanda();
       break;
-    case 4:
+    case "4":
       ExibirMediaBanda();
       break;
-    case 0:
+    case "0":
       Console.WriteLine("Tchau tchau");
       break;
     default:
