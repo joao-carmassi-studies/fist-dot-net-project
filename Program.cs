@@ -35,7 +35,7 @@ void ExibirMenu()
       ListaBandasRegistradas();
       break;
     case 3:
-      Console.WriteLine("Você escolheu a terceira opção: avaliar uma banda");
+      AvaliarBanda();
       break;
     case 4:
       Console.WriteLine("Você escolheu a quarta opção: exibir a média de uma banda");
@@ -44,7 +44,8 @@ void ExibirMenu()
       Console.WriteLine("Tchau tchau");
       break;
     default:
-      Console.WriteLine("Opção inválida. Tente novamente.\n");
+      Console.WriteLine("Opção inválida. Tente novamente.");
+      ExibeMsgIrInicio();
       break;
   }
 }
@@ -66,6 +67,18 @@ void ExibeMsgIrInicio()
   Console.Clear();
   ExibirLogo();
   ExibirMenu();
+}
+
+//? Utils --------------------
+
+void ListaBandas()
+{
+  int i = 1;
+  foreach (string banda in listaDeBandas.Keys)
+  {
+    Console.WriteLine($"{i} - {banda}");
+    i++;
+  }
 }
 
 //? FuncoesMenu --------------------
@@ -91,13 +104,31 @@ void ListaBandasRegistradas()
 {
   Console.Clear();
   ExibeTitulo("Lista das bandas");
-  int i = 1;
-  foreach (string banda in listaDeBandas.Keys)
+  ListaBandas();
+
+  ExibeMsgIrInicio();
+}
+
+void AvaliarBanda()
+{
+  Console.Clear();
+  ExibeTitulo("Selecione uma banda");
+  ListaBandas();
+  Console.Write("\nDigite o nome da banda: ");
+  string nomeDaBanda = Console.ReadLine()!;
+
+  if (!listaDeBandas.ContainsKey(nomeDaBanda))
   {
-    Console.WriteLine($"{i} - {banda}");
-    i++;
+    Console.WriteLine($"A banda {nomeDaBanda} não existe");
+    ExibeMsgIrInicio();
   }
 
+  Console.Clear();
+  ExibeTitulo($"De uma nota para {nomeDaBanda}");
+  Console.Write("Nota: ");
+  int nota = int.Parse(Console.ReadLine()!);
+  listaDeBandas[nomeDaBanda].Add(nota);
+  Console.WriteLine($"Vc deu nota {nota} para a banda {nomeDaBanda}");
   ExibeMsgIrInicio();
 }
 
